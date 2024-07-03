@@ -25,8 +25,8 @@ const About = () => {
             <div className="text-sm">
               Bproperty utilizes technology to drive solutions for all
               stakeholders within the real estate industry with the vision to
-              ensure that all Bangladeshis have access to a trusted and secure
-              real estate service provider.
+              ensure that all peoples have access to a trusted and secure real
+              estate service provider.
             </div>
           </div>
         </div>

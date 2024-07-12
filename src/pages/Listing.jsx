@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import { Swiper, SwiperSlide } from "swiper/react";
+// import { Swiper, SwiperSlide } from "swiper/react";
 import SwiperCore from "swiper";
 import { Navigation } from "swiper/modules";
 import "swiper/css/bundle";
@@ -9,7 +9,7 @@ import {
   FaChair,
   FaMapMarkerAlt,
   FaParking,
-  FaShare,
+  // FaShare,
 } from "react-icons/fa";
 
 import { listings } from "../assets/listings";
@@ -34,11 +34,10 @@ export default function Listing() {
             backgroundSize: "cover",
           }}
         ></div>
-        <div className="fixed top-[13%] right-[3%] z-10 border rounded-full w-12 h-12 flex justify-center items-center bg-slate-100 cursor-pointer"></div>
 
         <div className="flex flex-col max-w-4xl mx-auto p-3 my-7 gap-4">
           <p className="text-2xl font-semibold">
-            {listing.name} - ${" "}
+            {listing.name} -{" "}
             {listing.offer
               ? listing.discountPrice.toLocaleString("en-US")
               : listing.regularPrice.toLocaleString("en-US")}
@@ -54,7 +53,7 @@ export default function Listing() {
             </p>
             {listing.offer && (
               <p className="bg-green-900 w-full max-w-[200px] text-white text-center p-1 rounded-md">
-                ${+listing.regularPrice - +listing.discountPrice} OFF
+                {+listing.regularPrice - +listing.discountPrice} OFF
               </p>
             )}
           </div>

@@ -1,7 +1,6 @@
 import "swiper/css/bundle";
 import { listings } from "../assets/listings";
 import Item from "./Item";
-// import { Swiper, SwiperSlide } from "swiper/react";
 const HeroSection = () => {
   let rentItems = [];
   let saleItems = [];

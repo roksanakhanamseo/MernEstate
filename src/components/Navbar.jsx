@@ -11,11 +11,17 @@ const Navbar = () => {
           <p className="font-semibold">Property</p>
         </Link>
         <div className="flex justify-between">
-          <Link to={"/"} className="mx-5">
+          <Link to={"/"} className="mx-5 hover:underline">
             Home
           </Link>
-          <Link to={"/about"} className="mx-5">
+          <Link to={"/about"} className="mx-5 hover:underline">
             About
+          </Link>
+          <Link to={"/login"} className="mx-5 hover:underline">
+            Login
+          </Link>
+          <Link to={"/create-listing"} className="mx-5 hover:underline">
+            Create Listing
           </Link>
         </div>
         <div className="flex justify-center items-center">

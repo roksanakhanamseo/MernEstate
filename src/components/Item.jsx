@@ -1,12 +1,12 @@
-/* eslint-disable react/prop-types */
 import { MdLocationOn } from "react-icons/md";
 import { Link } from "react-router-dom";
-const Itme = ({ listing }) => {
+const Item = ({ listing }) => {
   return (
     <div>
       <div className="bg-white shadow-md hover:shadow-lg transition-shadow overflow-hidden rounded-lg w-full sm:w-[330px]">
         <Link to={`/listing/${listing._id}`}>
           <img
+            loading="eager"
             src={
               listing.imageUrls
                 ? listing.imageUrls
@@ -15,6 +15,7 @@ const Itme = ({ listing }) => {
             alt="listing cover"
             className="h-[320px] sm:h-[220px] w-full object-cover hover:scale-105 transition-scale duration-300"
           />
+
           <div className="p-3 flex flex-col gap-2 w-full">
             <p className="truncate text-lg font-semibold text-slate-700">
               {listing.name}
@@ -37,7 +38,7 @@ const Itme = ({ listing }) => {
             <div className="text-slate-700 flex gap-4">
               <div className="font-bold text-xs">
                 {listing.bedrooms > 1
-                  ? `${listing.bedrooms} beds `
+                  ? `${listing.bedrooms} beds`
                   : `${listing.bedrooms} bed `}
               </div>
               <div className="font-bold text-xs">
@@ -53,4 +54,4 @@ const Itme = ({ listing }) => {
   );
 };
 
-export default Itme;
+export default Item;

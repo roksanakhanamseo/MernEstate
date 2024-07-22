@@ -14,7 +14,7 @@ const signup = async (req, res) => {
       password: hashedPassword,
       email,
     });
-    // console.log(user);
+
     res.status(201).json("User created successfully!");
   } catch {
     res.status(400).json("User Creating Problem");
@@ -24,10 +24,10 @@ const login = async (req, res) => {
   const { password, email } = await req.body;
   const validUser = await User.findOne({ email });
 
-  if (!validUser) return res.send("Provide Credentials");
+  if (!validUser) return res.json("No user found ..");
   const validPassword = await bcrypt.compare(password, validUser.password);
 
-  if (!validPassword) return res.send("Wrong Credentials");
+  if (!validPassword) return res.json("Wrong Credentials");
   try {
     userObject = {
       email,
@@ -49,7 +49,7 @@ const login = async (req, res) => {
 };
 
 const signOut = (req, res) => {
-  res.clearCookie("userObject");
+  res.clearCookie("access_token");
   res.status(200).json("User has been logged out!");
 };
 module.exports = { signup, login, signOut };

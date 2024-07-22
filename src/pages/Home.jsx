@@ -6,7 +6,7 @@ import "../assets/css/home.css";
 const Home = () => {
   return (
     <div className="w-full h-full bg-[#a1b7db9e] relative">
-      <div className="flex mx-auto w-4/6 flex-col px-20 justify-center right-[0px] absolute">
+      <div className="flex mx-auto md:w-4/6 flex-col md:px-20 justify-center md:right-[0px] absolute px-10">
         <TypeAnimation
           className="pb-3 text-slate-900 pt-14"
           style={{ fontSize: "3rem" }}

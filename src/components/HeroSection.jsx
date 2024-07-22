@@ -1,6 +1,6 @@
 import "swiper/css/bundle";
 import { listings } from "../assets/listings";
-import Item from "./Item";
+import LocalItem from "./LocalItem";
 const HeroSection = () => {
   let rentItems = [];
   let saleItems = [];
@@ -24,7 +24,7 @@ const HeroSection = () => {
           {listings && listings.length > 0 && (
             <div className="flex flex-wrap justify-center p-3  gap-4">
               {saleItems.map((listing) => (
-                <Item listing={listing} key={listing._id} />
+                <LocalItem listing={listing} key={listing._id} />
               ))}
             </div>
           )}
@@ -41,7 +41,7 @@ const HeroSection = () => {
           {listings && listings.length > 0 && (
             <div className="flex flex-wrap justify-center p-3  gap-4">
               {rentItems.map((listing) => (
-                <Item listing={listing} key={listing._id} />
+                <LocalItem listing={listing} key={listing._id} />
               ))}
             </div>
           )}

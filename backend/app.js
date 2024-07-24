@@ -7,7 +7,6 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const listingRouter = require("./routes/listing");
 const path = require("path");
-const checkLogin = require("./middlewares/checkLogin");
 
 const app = express();
 dotenv.config();

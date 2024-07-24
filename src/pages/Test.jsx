@@ -4,31 +4,28 @@ const Test = () => {
   const [file, setFile] = useState();
 
   const handleChange = (e) => {
-    console.log(e.target.files[0]);
     setFile(e.target.files[0]);
+    console.log(e.target.files[0]);
   };
+
   const handleClick = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
+
+    let formData = new FormData();
     formData.append("file", file);
+
     const res = await fetch("http://localhost:3000/api/listing/test", {
+      credentials: "include",
       method: "POST",
       headers: {
-        "Access-Control-Allow-Origin": "http://localhost:3000/",
+        "Content-type": "application/json",
       },
-      credentials: "include",
-      withCredentials: true,
       body: formData,
     });
-    const data = await res.json();
-    console.log(data);
   };
   return (
     <div>
-      <form
-        encType="multipart/form-data"
-        className="flex justify-center items-center mx-auto"
-      >
+      <form className="flex justify-center items-center mx-auto">
         <input
           onChange={handleChange}
           type="file"

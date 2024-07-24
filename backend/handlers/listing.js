@@ -1,15 +1,23 @@
 const Listing = require("../models/listing");
+const path = require("path");
 const createListing = async (req, res) => {
   try {
-    console.log(req.body);
-    const listing = await Listing.create(req.body.formData);
+    // console.log(req.user);
+    req.body.userRef = req.user.id;
+    const listing = await Listing.create(req.body);
     return res.status(201).json(listing);
   } catch (error) {
     res.status(400).json("no");
   }
 };
-const test = async (req, res, next) => {
-  res.status(200).redirect("http://localhost:5173/");
+const handleUpload = async (req, res, next) => {
+  const files = req.files;
+  const result = [];
+  files.map((file) => {
+    // result.push(path.join(__dirname, "public/" + file.filename));
+    result.push(file.filename);
+  });
+  res.status(200).json(result);
 };
 
 const deleteListing = async (req, res, next) => {
@@ -55,10 +63,12 @@ const updateListing = async (req, res, next) => {
 const getListing = async (req, res, next) => {
   try {
     const listing = await Listing.findById(req.params.id);
+
     if (!listing) {
       res.status(400).send("Listing not found!");
+    } else {
+      res.status(200).json(listing);
     }
-    res.status(200).json(listing);
   } catch (error) {
     res.status(400).send("There is a problem in listing manupulating");
   }
@@ -120,6 +130,6 @@ module.exports = {
   deleteListing,
   updateListing,
   createListing,
-  test,
+  handleUpload,
   getListings,
 };

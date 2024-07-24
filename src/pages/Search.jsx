@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Item from "../components/Item";
-import { listings } from "../assets/listings";
-const data = listings;
+
 export default function Search() {
   const navigate = useNavigate();
   const [sidebardata, setSidebardata] = useState({
@@ -52,11 +51,11 @@ export default function Search() {
     const fetchListings = async () => {
       setLoading(true);
       setShowMore(false);
-      // const searchQuery = urlParams.toString();
-      // const res = await fetch(``);
-      // const res = await fetch(`/api/listing/get?${searchQuery}`);
-      // const data = await res.json();
-      // const data = listings;
+      const searchQuery = urlParams.toString();
+      const res = await fetch(
+        `http://localhost:3000/api/listing/get?${searchQuery}`
+      );
+      const data = await res.json();
       if (data.length > 8) {
         setShowMore(true);
       } else {
@@ -131,25 +130,28 @@ export default function Search() {
     setListings([...listings, ...data]);
   };
   return (
-    <div className="flex flex-col md:flex-row">
-      <div className="p-7  border-b-2 md:border-r-2 md:min-h-screen">
-        <form onSubmit={handleSubmit} className="flex flex-col gap-8">
-          <div className="flex items-center gap-2">
-            <label className="whitespace-nowrap font-semibold">
-              Search Term:
+    <div className="flex mx-auto justify-center w-5/6 flex-col ">
+      <div className="p-7  md:min-h-screen">
+        <form
+          onSubmit={handleSubmit}
+          className="flex justify-center mx-auto flex-col gap-8"
+        >
+          <div className="flex w-3/4 mx-auto items-center gap-2">
+            <label className="whitespace-nowrap  font-semibold">
+              Search Term :
             </label>
             <input
               type="text"
               id="searchTerm"
               placeholder="Search..."
-              className="border rounded-lg p-3 w-full"
+              className="border focus:outline-none rounded-lg p-3 w-full"
               value={sidebardata.searchTerm}
               onChange={handleChange}
             />
           </div>
-          <div className="flex gap-2 flex-wrap items-center">
+          <div className="flex mx-auto gap-2 no-wrap items-center">
             <label className="font-semibold">Type:</label>
-            <div className="flex gap-2">
+            <div className="flex  gap-2">
               <input
                 type="checkbox"
                 id="all"
@@ -157,9 +159,9 @@ export default function Search() {
                 onChange={handleChange}
                 checked={sidebardata.type === "all"}
               />
-              <span>Rent & Sale</span>
+              <span>All (R/S)</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex  gap-2">
               <input
                 type="checkbox"
                 id="rent"
@@ -169,7 +171,7 @@ export default function Search() {
               />
               <span>Rent</span>
             </div>
-            <div className="flex gap-2">
+            <div className="flex  gap-2">
               <input
                 type="checkbox"
                 id="sale"
@@ -190,7 +192,7 @@ export default function Search() {
               <span>Offer</span>
             </div>
           </div>
-          <div className="flex gap-2 flex-wrap items-center">
+          <div className="flex mx-auto gap-2 flex-wrap items-center">
             <label className="font-semibold">Amenities:</label>
             <div className="flex gap-2">
               <input
@@ -213,13 +215,13 @@ export default function Search() {
               <span>Furnished</span>
             </div>
           </div>
-          <div className="flex items-center gap-2">
+          <div className="flex mx-auto items-center gap-2">
             <label className="font-semibold">Sort:</label>
             <select
               onChange={handleChange}
               defaultValue={"created_at_desc"}
               id="sort_order"
-              className="border rounded-lg p-3"
+              className="focus:outline-none border-none bg-slate-400 rounded-lg p-3"
             >
               <option value="regularPrice_desc">Price high to low</option>
               <option value="regularPrice_asc">Price low to hight</option>
@@ -227,16 +229,16 @@ export default function Search() {
               <option value="createdAt_asc">Oldest</option>
             </select>
           </div>
-          <button className="bg-slate-700 text-white p-3 rounded-lg uppercase hover:opacity-95">
+          <button className="bg-slate-700  hover:scale-[1.02] active:scale-95 text-white p-3 rounded-lg uppercase hover:opacity-95 transition-all duration-300">
             Search
           </button>
         </form>
       </div>
       <div className="flex-1">
-        <h1 className="text-3xl font-semibold border-b p-3 text-slate-700 mt-5">
+        <h1 className="text-3xl pl-[5rem] font-semibold  p-3 text-slate-700 ">
           Listing results:
         </h1>
-        <div className="p-7 flex flex-wrap gap-4">
+        <div className="p-7 flex flex-wrap justify-center gap-4">
           {!loading && listings.length === 0 && (
             <p className="text-xl text-slate-700">No listing found!</p>
           )}

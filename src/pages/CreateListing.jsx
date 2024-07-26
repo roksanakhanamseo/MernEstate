@@ -25,7 +25,7 @@ export default function CreateListing() {
   const [uploaded, setUploaded] = useState(false);
   const handleChange = (e) => {
     if (e.target.id === "sale" || e.target.id === "rent") {
-      setFormData({
+      return setFormData({
         ...formData,
         type: e.target.id,
       });
@@ -36,7 +36,7 @@ export default function CreateListing() {
       e.target.id === "furnished" ||
       e.target.id === "offer"
     ) {
-      setFormData({
+      return setFormData({
         ...formData,
         [e.target.id]: e.target.checked,
       });
@@ -47,7 +47,7 @@ export default function CreateListing() {
       e.target.type === "text" ||
       e.target.type === "textarea"
     ) {
-      setFormData({
+      return setFormData({
         ...formData,
         [e.target.id]: e.target.value,
       });
@@ -56,6 +56,7 @@ export default function CreateListing() {
 
   const handleImageSubmit = async (e) => {
     e.preventDefault();
+    setImageUploadError(false);
     if (file === undefined) {
       setImageUploadError("You have to select at least 1 image for uploading");
       return;

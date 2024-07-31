@@ -9,7 +9,9 @@ const listingRouter = require("./routes/listing");
 const path = require("path");
 
 const app = express();
+
 dotenv.config();
+app.set("view engine", "ejs");
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
@@ -30,6 +32,14 @@ mongoose
     console.log(err);
   });
 
+app.get("/", (req, res) => {
+  res.render("index");
+});
+app.get("/favicon.ico", (req, res) => {
+  res.sendFile(path.join(__dirname, "public", "favicon.ico"));
+});
+
+// app.all("/favicon.ico", (req, res) => res.status(204));
 app.use("/api/user", userRouter);
 app.use("/api/auth", authRouter);
 app.use("/api/listing", listingRouter);
@@ -51,7 +61,9 @@ app.use(function (req, res, next) {
   );
   next();
 });
+
 app.listen(
-  process.env.PORT,
+  process.env.PORT ? process.env.PORT : 3000,
+  "0.0.0.0",
   console.log(`Server started at port ${process.env.PORT}`)
 );

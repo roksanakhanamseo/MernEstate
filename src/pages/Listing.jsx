@@ -30,7 +30,7 @@ export default function Listing() {
       try {
         setLoading(true);
         const res = await fetch(
-          `http://localhost:3000/api/listing/get/${params.id}`
+          `https://mernestatebackend-production.up.railway.app/api/listing/get/${params.id}`
         );
         const data = await res.json();
 

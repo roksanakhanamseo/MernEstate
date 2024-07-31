@@ -14,14 +14,17 @@ const Test = () => {
     let formData = new FormData();
     formData.append("file", file);
 
-    const res = await fetch("http://localhost:3000/api/listing/test", {
-      credentials: "include",
-      method: "POST",
-      headers: {
-        "Content-type": "application/json",
-      },
-      body: formData,
-    });
+    const res = await fetch(
+      "https://mernestatebackend-production.up.railway.app/api/listing/test",
+      {
+        credentials: "include",
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: formData,
+      }
+    );
   };
   return (
     <div>

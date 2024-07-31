@@ -71,11 +71,14 @@ export default function CreateListing() {
       }
     });
 
-    const res = await fetch("http://localhost:3000/api/listing/create-upload", {
-      method: "POST",
-      credentials: "include",
-      body: imageData,
-    });
+    const res = await fetch(
+      "https://mernestatebackend-production.up.railway.app/api/listing/create-upload",
+      {
+        method: "POST",
+        credentials: "include",
+        body: imageData,
+      }
+    );
     const result = await res.json();
     if (result == "error logging in") {
       setError("Please login before creating a listing");
@@ -101,14 +104,17 @@ export default function CreateListing() {
       try {
         setLoading(true);
         setError("");
-        const res = await fetch("http://localhost:3000/api/listing/create", {
-          method: "POST",
-          credentials: "include",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(formData),
-        });
+        const res = await fetch(
+          "https://mernestatebackend-production.up.railway.app/api/listing/create",
+          {
+            method: "POST",
+            credentials: "include",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(formData),
+          }
+        );
         const data = await res.json();
 
         setLoading(false);

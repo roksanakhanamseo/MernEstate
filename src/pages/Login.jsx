@@ -25,8 +25,10 @@ const Login = () => {
           },
           body: JSON.stringify(formData),
         }
+      
       );
-
+const resData=await res.json()
+      console.log(resData
       const data = await res.json();
       console.log(data);
       if (data == "Login successfully!") {

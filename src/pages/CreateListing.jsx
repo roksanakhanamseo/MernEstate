@@ -76,6 +76,9 @@ export default function CreateListing() {
       {
         method: "POST",
         credentials: "include",
+        headers: {
+          authorization: `${localStorage.getItem("token")}`,
+        },
         body: imageData,
       }
     );
@@ -110,6 +113,7 @@ export default function CreateListing() {
             method: "POST",
             credentials: "include",
             headers: {
+              authorization: `${localStorage.getItem("token")}`,
               "Content-Type": "application/json",
             },
             body: JSON.stringify(formData),

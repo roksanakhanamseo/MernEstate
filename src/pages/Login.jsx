@@ -28,8 +28,8 @@ const Login = () => {
       );
 
       const data = await res.json();
-      console.log(data);
-      if (data == "Login successfully!") {
+      if (data.status == "Login successfully!") {
+        localStorage.setItem("token", data.token);
         navigate("/");
       } else {
         setError(data);

@@ -1,6 +1,8 @@
 const jwt = require("jsonwebtoken");
 const checkLogin = async (req, res, next) => {
-  const token = await req.signedCookies.access_token;
+  const token =
+    (await req.signedCookies.access_token) || req.headers.authorization;
+
   if (!token) return res.json("error logging in");
 
   jwt.verify(token, process.env.JWT_SECRET, (err, user) => {

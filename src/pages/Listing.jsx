@@ -30,7 +30,8 @@ export default function Listing() {
       try {
         setLoading(true);
         const res = await fetch(
-          `https://mernestatebackend-production.up.railway.app/api/listing/get/${params.id}`
+          `https://mernestatebackend-production.up.railway.app/api/listing/get/${params.id}`,
+          { headers: { authorization: `${localStorage.getItem("token")}` } }
         );
         const data = await res.json();
 

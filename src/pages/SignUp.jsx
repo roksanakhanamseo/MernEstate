@@ -25,7 +25,6 @@ export default function SignUp() {
       }
     );
     const data = await res.json();
-    console.log(typeof data);
     navigate("/login");
   };
 

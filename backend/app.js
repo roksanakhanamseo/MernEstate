@@ -19,7 +19,7 @@ app.use(cookieParser(process.env.COOKIE_SECRET));
 app.use(
   cors({
     credentials: true,
-    origin: ["https://killer-nine.vercel.app/", "http://localhost:5173"],
+    origin: ["https://killer-nine.vercel.app", "http://localhost:5173"],
   })
 );
 
@@ -54,11 +54,12 @@ app.use((err, req, res, next) => {
   });
 });
 app.use(function (req, res, next) {
-  res.header("Access-Control-Allow-Origin", req.headers.origin);
+  res.header("Access-Control-Allow-Origin", "*");
   res.header(
     "Access-Control-Allow-Headers",
     "Origin, X-Requested-With, Content-Type, Accept"
   );
+  res.header("Access-Control-Allow-Credentials", true);
   next();
 });
 

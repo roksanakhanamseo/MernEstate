@@ -24,10 +24,10 @@ const login = async (req, res) => {
   const { password, email } = await req.body;
   const validUser = await User.findOne({ email });
 
-  if (!validUser) return res.json("No user found ..");
+  if (!validUser) return res.json({ status: "No user found .." });
   const validPassword = await bcrypt.compare(password, validUser.password);
 
-  if (!validPassword) return res.json("Wrong Credentials");
+  if (!validPassword) return res.json({ status: "Wrong Credentials" });
   try {
     userObject = {
       email,
@@ -44,7 +44,7 @@ const login = async (req, res) => {
       .status(201)
       .json({ token, status: "Login successfully!" });
   } catch {
-    res.status(400).json("Login Problem");
+    res.status(400).json({ status: "Login Problem" });
   }
 };
 

@@ -13,6 +13,7 @@ const Login = () => {
   };
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError(null);
     try {
       const res = await fetch(
         "https://mernestatebackend-production.up.railway.app/api/auth/login",
@@ -32,6 +33,12 @@ const Login = () => {
       if (data.status == "Login successfully!") {
         localStorage.setItem("token", data.token);
         navigate("/");
+      } else if (
+        data.status == "No user found .." ||
+        data.status == "Wrong Credentials" ||
+        data.status == "Login Problem"
+      ) {
+        setError(data.status);
       } else {
         setError(data);
       }

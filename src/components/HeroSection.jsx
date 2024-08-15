@@ -1,6 +1,7 @@
 import "swiper/css/bundle";
 import { listings } from "../assets/listings";
 import LocalItem from "./LocalItem";
+
 const HeroSection = () => {
   let rentItems = [];
   let saleItems = [];
@@ -11,6 +12,7 @@ const HeroSection = () => {
       rentItems.push(item);
     }
   });
+
   return (
     <div>
       <div className="py-4 mt-4">
@@ -38,7 +40,7 @@ const HeroSection = () => {
           </div>
         </div>
         <div className="w-10/12 mx-auto p-5 ">
-          {listings && listings.length > 0 && (
+          {listings && rentItems.length > 0 && (
             <div className="flex flex-wrap justify-center p-3  gap-4">
               {rentItems.map((listing) => (
                 <LocalItem listing={listing} key={listing._id} />

@@ -4,6 +4,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Listing from "./pages/Listing";
+import LocalListing from "./pages/LocalListing";
 import Search from "./pages/Search";
 import Login from "./pages/Login";
 import SignUp from "./pages/SignUp";
@@ -25,6 +26,7 @@ const App = () => {
             <Route path="/about" element={<About />} />
             <Route path="/search" element={<Search />} />
             <Route path="/listing/:id" element={<Listing />} />
+            <Route path="/local-listing/:id" element={<LocalListing />} />
           </Routes>
 
           <Footer />

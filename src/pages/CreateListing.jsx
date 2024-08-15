@@ -73,6 +73,7 @@ export default function CreateListing() {
 
     const res = await fetch(
       "https://mernestatebackend-production.up.railway.app/api/listing/create-upload",
+      // "http://localhost:3000/api/listing/create-upload",
       {
         method: "POST",
         credentials: "include",
@@ -109,6 +110,7 @@ export default function CreateListing() {
         setError("");
         const res = await fetch(
           "https://mernestatebackend-production.up.railway.app/api/listing/create",
+          // "http://localhost:3000/api/listing/create",
           {
             method: "POST",
             credentials: "include",

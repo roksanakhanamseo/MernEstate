@@ -29,10 +29,10 @@ const Navbar = () => {
     <div className="select-none">
       {navOpen ? (
         <div className=" fixed z-50 opacity-1 bg-[#a1b7db] mx-auto h-screen w-full  flex justify-start items-start ">
-          <div className=" pl-10 pt-10 flex text-2xl md:flex flex-col justify-between">
+          <div className=" pl-10 pt-10 flex text-2xl flex-col justify-between">
             <form
               onSubmit={handleSubmit}
-              className="bg-slate-100 p-3 rounded-lg flex items-center mb-10"
+              className="bg-slate-100 p-3  flex rounded-lg  items-center mb-10"
             >
               <input
                 type="text"
@@ -104,7 +104,7 @@ const Navbar = () => {
                 Create Listing
               </Link>
             </div>
-            <div className="flex justify-center items-center">
+            <div className="sm:flex justify-center hidden items-center">
               <form
                 onSubmit={handleSubmit}
                 className="bg-slate-100 p-3 rounded-lg flex items-center"

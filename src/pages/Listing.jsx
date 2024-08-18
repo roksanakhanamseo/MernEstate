@@ -22,7 +22,7 @@ export default function Listing() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [contact, setContact] = useState(false);
+  // const [contact, setContact] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -52,7 +52,7 @@ export default function Listing() {
     fetchListing();
   }, [params.id]);
 
-  const dirname = "../../backend/public/my-uploads/";
+  // const dirname = "../../backend/public/my-uploads/";
   return (
     <main>
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
@@ -67,7 +67,7 @@ export default function Listing() {
                 <div
                   className="h-[300px] md:h-[550px]"
                   style={{
-                    background: `url(${dirname + url}) center no-repeat`,
+                    background: `url(${url}) center no-repeat`,
                     backgroundSize: "cover",
                   }}
                 ></div>

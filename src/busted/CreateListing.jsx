@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 export default function CreateListing() {
   const navigate = useNavigate();
+  const [file, setFiles] = useState();
   const [formData, setFormData] = useState({
     imageUrls: [],
     name: "",
@@ -55,95 +56,45 @@ export default function CreateListing() {
 
   const handleImageSubmit = async (e) => {
     e.preventDefault();
-
-    setImageUploadError("");
-    setUploading(true);
-    setUploaded(false);
     const f = document.getElementById("image-input");
-    if (Object.keys(f.files).length > 7) {
-      setImageUploadError("You can only upload 6 images per listing");
-      setUploading(false);
-      setUploaded(true);
-      return;
-    }
-
+    // console.log(f.files);
+    // console.log(f.files.length);
+    setUploading(true);
+    setImageUploadError("");
+    setUploaded(false);
     if (f.files === undefined) {
       setImageUploadError("You have to select at least 1 image for uploading");
-      setUploading(false);
-      setUploaded(true);
       return;
     }
-    const images = await [...f.files];
-    await images.map(async (file) => {
-      console.log(file);
-      if (file.size > 2000000) {
-        setImageUploadError("Maximum 2MB image size is allowed for each image");
-        setUploading(false);
-        setUploaded(true);
-        return;
-      }
-
-      let form = new FormData();
-      form.append("file", file);
-      form.append("upload_preset", "xubbr2hv");
-      form.append("cloud_name", "tanviranjum");
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/tanviranjum/image/upload",
-        {
-          method: "POST",
-          body: form,
+    if (f.files.length > 0 && f.files.length < 7) {
+      for (let i = 0; i < f.files.length; i++) {
+        // console.log(f.files[i]);
+        if (e.files[i].size > 2000000) {
+          setImageUploadError(
+            "Maximum 2MB image size is allowed for each image"
+          );
+          return;
+        } else {
+          let formData = new FormData();
+          formData.append("file", f.files[i]);
+          formData.append("upload_preset", "xubbr2hv");
+          formData.append("cloud_name", "tanviranjum");
+          fetch("https://api.cloudinary.com/v1_1/tanviranjum/image/upload", {
+            method: "POST",
+            body: formData,
+          })
+            .then((res) => res.json())
+            .then((data) => console.log(data))
+            .catch((error) => console.log("Error", error));
         }
-      );
-      const data = await res.json();
-      setFormData({
-        ...formData,
-        imageUrls: [...formData.imageUrls, data.secure_url],
-      });
-      console.log(data);
-    });
+      }
+    } else {
+      setImageUploadError("You can only upload 6 images per listing");
+      return;
+    }
     setUploading(false);
     setUploaded(true);
   };
-  // console.log(formData);
-  // const handleImageSubmit = async (e) => {
-  //   e.preventDefault();
-  //   setImageUploadError(false);
-  //   if (file === undefined) {
-  //     setImageUploadError("You have to select at least 1 image for uploading");
-  //     return;
-  //   }
-  //   let imageData = new FormData();
-  //   setUploading(true);
-  //   file.map((image) => {
-  //     if (file[0].size > 2000000) {
-  //       setImageUploadError("Maximum 2MB image size is allowed for each image");
-  //     } else {
-  //       imageData.append("photos", image);
-  //     }
-  //   });
-
-  //   const res = await fetch(
-  //     "https://mernestatebackend-production.up.railway.app/api/listing/create-upload",
-  //     // "http://localhost:3000/api/listing/create-upload",
-  //     {
-  //       method: "POST",
-  //       credentials: "include",
-  //       headers: {
-  //         authorization: `${localStorage.getItem("token")}`,
-  //       },
-  //       body: imageData,
-  //     }
-  //   );
-  //   const result = await res.json();
-  //   if (result == "error logging in") {
-  //     setError("Please login before creating a listing");
-  //     setUploading(false);
-  //   } else {
-  //     setFormData({ ...formData, imageUrls: result });
-  //     setUploading(false);
-  //     setUploaded(true);
-  //   }
-  // };
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -207,7 +158,7 @@ export default function CreateListing() {
       <h1 className="text-3xl font-semibold text-center my-7">
         Create a Listing
       </h1>
-      <form id="main-form" className="flex flex-col gap-4">
+      <form className="flex flex-col gap-4">
         <div className="flex flex-col gap-4 flex-1">
           <label
             className="pl-1 select-none font-mono font-bold"
@@ -218,7 +169,7 @@ export default function CreateListing() {
           <input
             name="name"
             type="text"
-            className="border p-3  rounded-lg"
+            className="border p-3 rounded-lg"
             id="name"
             maxLength="62"
             minLength="10"
@@ -399,11 +350,10 @@ export default function CreateListing() {
           </p>
           <div className="flex gap-4">
             <input
-              // onChange={handleImageChange}
-              id="image-input"
               className="p-3 file:bg-red-200 border bg-violet-100  border-slate-900 rounded-xl w-full"
               type="file"
               accept="image/*"
+              id="image-input"
               multiple
               placeholder="Select Image"
             />

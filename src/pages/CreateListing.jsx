@@ -22,6 +22,7 @@ export default function CreateListing() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+  const [contact, setContact] = useState("");
   const handleChange = (e) => {
     if (e.target.id === "sale" || e.target.id === "rent") {
       return setFormData({

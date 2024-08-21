@@ -164,8 +164,8 @@ export default function CreateListing() {
         setLoading(true);
         setError("");
         const res = await fetch(
-          // "https://mernestatebackend-production.up.railway.app/api/listing/create",
-          "http://localhost:3000/api/listing/create",
+          "https://mernestatebackend-production.up.railway.app/api/listing/create",
+          // "http://localhost:3000/api/listing/create",
           {
             method: "POST",
             credentials: "include",

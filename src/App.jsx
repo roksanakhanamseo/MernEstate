@@ -14,7 +14,7 @@ import Test from "./pages/Test";
 const App = () => {
   return (
     <>
-      <div className="bg-[#a2b8dbb6]">
+      <div className="bg-[#a2b8dbb6] scroll-smooth">
         <BrowserRouter>
           <Navbar />
           <Routes>

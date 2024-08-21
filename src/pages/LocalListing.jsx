@@ -13,7 +13,7 @@ function Listing() {
   // hello;
   const [listing, setListing] = useState(null);
   const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
   const params = useParams();
   useEffect(() => {
     setLoading(true);

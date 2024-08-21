@@ -18,7 +18,7 @@ const HeroSection = () => {
       <div className="py-4 mt-4">
         <div className="w-4/6 mx-auto">
           <div className="text-3xl semi-bold pb-3">Recent Sale Offers</div>
-          <div className="text-sm test-slate-600">
+          <div className="text-sm text-slate-600">
             Find the suitable apartment for you
           </div>
         </div>

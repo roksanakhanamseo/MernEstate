@@ -56,7 +56,6 @@ export default function CreateListing() {
 
   const handleImageSubmit = async (e) => {
     e.preventDefault();
-
     setImageUploadError("");
     setUploading(true);
     setUploaded(false);
@@ -74,9 +73,10 @@ export default function CreateListing() {
       setUploaded(true);
       return;
     }
-    const images = await [...f.files];
-    await images.map(async (file) => {
-      console.log(file);
+    const images = [...f.files];
+    const newUrls = [];
+    images.forEach(async (file) => {
+      // console.log(file);
       if (file.size > 2000000) {
         setImageUploadError("Maximum 2MB image size is allowed for each image");
         setUploading(false);
@@ -96,11 +96,12 @@ export default function CreateListing() {
         }
       );
       const data = await res.json();
+      newUrls.push(data.secure_url);
+
       setFormData({
         ...formData,
-        imageUrls: [...formData.imageUrls, data.secure_url],
+        imageUrls: newUrls,
       });
-      console.log(data);
     });
     setUploading(false);
     setUploaded(true);

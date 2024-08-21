@@ -22,6 +22,7 @@ export default function CreateListing() {
   const [error, setError] = useState(false);
   const [loading, setLoading] = useState(false);
   const [uploaded, setUploaded] = useState(false);
+
   const [contact, setContact] = useState("");
   const handleChange = (e) => {
     if (e.target.id === "sale" || e.target.id === "rent") {
@@ -74,9 +75,9 @@ export default function CreateListing() {
       return;
     }
     const images = [...f.files];
-    const newUrls = [];
+    var newUrls = [];
+
     images.forEach(async (file) => {
-      // console.log(file);
       if (file.size > 2000000) {
         setImageUploadError("Maximum 2MB image size is allowed for each image");
         setUploading(false);
@@ -97,15 +98,15 @@ export default function CreateListing() {
       );
       const data = await res.json();
       newUrls.push(data.secure_url);
+      setFormData({
+        ...formData,
+        imageUrls: newUrls,
+      });
+      if (images.length == newUrls.length) {
+        setUploading(false);
+        setUploaded(true);
+      }
     });
-    console.log(newUrls);
-    setFormData({
-      ...formData,
-      imageUrls: newUrls,
-    });
-    console.log(formData.imageUrls);
-    setUploading(false);
-    setUploaded(true);
   };
   // console.log(formData);
   // const handleImageSubmit = async (e) => {
@@ -149,7 +150,7 @@ export default function CreateListing() {
   // };
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    console.log(formData?.imageUrls);
     if (
       formData.imageUrls.length === 0 &&
       formData.name == "" &&
@@ -423,10 +424,10 @@ export default function CreateListing() {
           </p>
 
           <button
-            disabled={loading || uploading}
+            disabled={loading || uploading || !uploaded}
             type="submit"
             onClick={handleSubmit}
-            className="transition-all active:scale-95  hover:scale-[1.01] hover:shadow-xl duration-300 p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
+            className="transition-all disabled:bg-slate-600 active:scale-95  hover:scale-[1.01] hover:shadow-xl duration-300 p-3 bg-slate-700 text-white rounded-lg uppercase hover:opacity-95 disabled:opacity-80"
           >
             {loading ? "Uploading..." : "Upload New Listing"}
           </button>

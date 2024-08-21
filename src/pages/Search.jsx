@@ -260,7 +260,7 @@ export default function Search() {
           {showMore && (
             <button
               onClick={onShowMoreClick}
-              className="text-green-700 px-3 py-2 active:scale-95  hover:text-slate-600 p-7 text-center w-full"
+              className="bg-green-600 text-slate-300 hover:bg-green-400 rounded test-2xl px-3 py-2 active:scale-95  hover:text-slate-600 p-7 text-center w-full"
             >
               Show more
             </button>

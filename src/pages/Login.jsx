@@ -16,8 +16,8 @@ const Login = () => {
     setError(null);
     try {
       const res = await fetch(
-        "https://mernestatebackend-production.up.railway.app/api/auth/login",
-        // "http://localhost:3000/api/auth/login",
+        // "https://mernestatebackend-production.up.railway.app/api/auth/login",
+        "http://localhost:3000/api/auth/login",
         {
           method: "POST",
           withCredentials: true,

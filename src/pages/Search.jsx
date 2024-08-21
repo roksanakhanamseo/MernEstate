@@ -123,7 +123,9 @@ export default function Search() {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/listing/get?${searchQuery}`);
+    const res = await fetch(
+      `https://mernestatebackend-production.up.railway.app/api/listing/get?${searchQuery}`
+    );
     const data = await res.json();
     if (data.length < 9) {
       setShowMore(false);
@@ -258,7 +260,7 @@ export default function Search() {
           {showMore && (
             <button
               onClick={onShowMoreClick}
-              className="text-green-700 hover:underline p-7 text-center w-full"
+              className="text-green-700 px-3 py-2 active:scale-95  hover:text-slate-600 p-7 text-center w-full"
             >
               Show more
             </button>

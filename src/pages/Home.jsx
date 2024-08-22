@@ -4,6 +4,7 @@ import HeroSection from "../components/HeroSection";
 import "../assets/css/home.css";
 
 const Home = () => {
+  // console.log(import.meta.env.VITE_APP_TEST);
   return (
     <div className="w-full h-full bg-[#a1b7db9e] relative">
       <div className="flex mx-auto md:w-4/6 flex-col md:px-20 justify-center md:right-[0px] absolute px-10">

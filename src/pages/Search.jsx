@@ -53,7 +53,7 @@ export default function Search() {
       setShowMore(false);
       const searchQuery = urlParams.toString();
       const res = await fetch(
-        `https://mernestatebackend-production.up.railway.app/api/listing/get?${searchQuery}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/listing/get?${searchQuery}`,
         { headers: { authorization: `${localStorage.getItem("token")}` } }
       );
       const data = await res.json();
@@ -124,7 +124,7 @@ export default function Search() {
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
     const res = await fetch(
-      `https://mernestatebackend-production.up.railway.app/api/listing/get?${searchQuery}`
+      `${import.meta.env.VITE_BACKEND_URL}/api/listing/get?${searchQuery}`
     );
     const data = await res.json();
     if (data.length < 9) {

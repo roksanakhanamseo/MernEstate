@@ -16,8 +16,7 @@ const Login = () => {
     setError(null);
     try {
       const res = await fetch(
-        "https://mernestatebackend-production.up.railway.app/api/auth/login",
-        // "http://localhost:3000/api/auth/login",
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
         {
           method: "POST",
           withCredentials: true,
@@ -31,6 +30,7 @@ const Login = () => {
 
       const data = await res.json();
       if (data.status == "Login successfully!") {
+        console.log("Successfully Logged In");
         localStorage.setItem("token", data.token);
         navigate("/");
       } else if (

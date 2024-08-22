@@ -89,13 +89,10 @@ export default function CreateListing() {
       form.append("file", file);
       form.append("upload_preset", "xubbr2hv");
       form.append("cloud_name", "tanviranjum");
-      const res = await fetch(
-        "https://api.cloudinary.com/v1_1/tanviranjum/image/upload",
-        {
-          method: "POST",
-          body: form,
-        }
-      );
+      const res = await fetch(`${import.meta.env.VITE_CLOUDINARY_API}`, {
+        method: "POST",
+        body: form,
+      });
       const data = await res.json();
       newUrls.push(data.secure_url);
       setFormData({
@@ -164,8 +161,7 @@ export default function CreateListing() {
         setLoading(true);
         setError("");
         const res = await fetch(
-          "https://mernestatebackend-production.up.railway.app/api/listing/create",
-          // "http://localhost:3000/api/listing/create",
+          `${import.meta.env.VITE_BACKEND_URL}/api/listing/create`,
           {
             method: "POST",
             credentials: "include",

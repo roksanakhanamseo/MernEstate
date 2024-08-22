@@ -14,7 +14,7 @@ export default function SignUp() {
     e.preventDefault();
 
     const res = await fetch(
-      "https://mernestatebackend-production.up.railway.app/api/auth/signup",
+      `${import.meta.env.VITE_BACKEND_URL}/api/auth/signup`,
       {
         method: "POST",
         credentials: "include",

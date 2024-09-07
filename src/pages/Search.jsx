@@ -57,6 +57,7 @@ export default function Search() {
         { headers: { authorization: `${localStorage.getItem("token")}` } }
       );
       const data = await res.json();
+
       if (data.length > 8) {
         setShowMore(true);
       } else {

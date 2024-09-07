@@ -12,9 +12,6 @@ import {
   FaParking,
   FaShare,
 } from "react-icons/fa";
-// import Contact from "../components/Contact";
-
-// https://sabe.io/blog/javascript-format-numbers-commas#:~:text=The%20best%20way%20to%20format,format%20the%20number%20with%20commas.
 
 export default function Listing() {
   SwiperCore.use([Navigation]);
@@ -22,7 +19,6 @@ export default function Listing() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [copied, setCopied] = useState(false);
-  // const [contact, setContact] = useState(false);
   const params = useParams();
 
   useEffect(() => {
@@ -51,7 +47,6 @@ export default function Listing() {
     fetchListing();
   }, [params.id]);
 
-  // const dirname = "../../backend/public/my-uploads/";
   return (
     <main>
       {loading && <p className="text-center my-7 text-2xl">Loading...</p>}
@@ -138,8 +133,16 @@ export default function Listing() {
                 {listing.furnished ? "Furnished" : "Unfurnished"}
               </li>
             </ul>
-
-            {/* {contact && <Contact listing={listing} />} */}
+            <div
+              onClick={() =>
+                alert(
+                  "As this website is for learning purposes, I've disabled the contact form. However, you can validate the other features"
+                )
+              }
+              className="py-2 bg-slate-500 text-white hover:bg-slate-200 hover:text-black transition-all duration-300 rounded  px-4 border text-center text-2xl"
+            >
+              Contact Owner
+            </div>
           </div>
         </div>
       )}

@@ -13,14 +13,14 @@ const About = () => {
           <div className="info mx-2 md:mx-20">
             <div className="md:text-3xl text-xl pt-2 md:pt-10">At a glance</div>
             <div className="font-mono py-5">
-              Starting back in 2016, TanvirProperty has now become the only real
-              estate solutions provider in the World and its largest transacting
-              real estate company. Combining an unmatched online and offline
-              presence with our incomparable database of information, Bproperty
-              has become the pioneer that caters to the needs of those with real
-              estate queries, whether property search or customization,
-              providing supporting services such as legal, mortgage, and
-              interior to ensure all solutions are under one roof.
+              Starting back in 2016, RoksanaProperty has now become the only
+              real estate solutions provider in the World and its largest
+              transacting real estate company. Combining an unmatched online and
+              offline presence with our incomparable database of information,
+              Bproperty has become the pioneer that caters to the needs of those
+              with real estate queries, whether property search or
+              customization, providing supporting services such as legal,
+              mortgage, and interior to ensure all solutions are under one roof.
             </div>
             <div className="text-sm">
               Bproperty utilizes technology to drive solutions for all

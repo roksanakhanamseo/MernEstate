@@ -86,7 +86,7 @@ const Navbar = () => {
           <div className="mx-auto w-10/12  flex justify-around items-center">
             <Link to="/" className="flex text-xl md:text-3xl">
               <b>
-                <i className="text-stone-700">Roksana</i>
+                <i className="text-stone-700">RT</i>
               </b>
               <p className="font-semibold">Property</p>
             </Link>
